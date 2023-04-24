@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiplication Flash Cards</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        background-image: linear-gradient(45deg, #f3e6e8, #ffffff);
+        font-family: 'Arial', sans-serif;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-size: 64px;
+        font-weight: bold;
+        color: #4c4c4c;
+        letter-spacing: 2px;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+        height: 300px;
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: 5px solid #f0f0f0;
+      }
+
+      .question {
+        font-size: 96px;
+        color: #1a1a1a;
+      }
+
+      .answer {
+        font-size: 144px;
+        color: #ff6b6b;
+      }
+
+      .card:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border: 5px solid #ff6b6b;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="card"></div>
+    </div>
+    <script>
+      var card = document.getElementById("card");
+      var num1, num2, answer;
+
+      function generateRandomNumbers() {
+        num1 = Math.floor(Math.random() * 12) + 1;
+        num2 = Math.floor(Math.random() * 12) + 1;
+        answer = num1 * num2;
+      }
+
+      function displayQuestionCard() {
+        generateRandomNumbers();
+        card.innerHTML = "<div class='card question'>" + num1 + " x " + num2 + "</div>";
+      }
+
+      function displayAnswerCard() {
+        card.innerHTML = "<div class='card answer'>" + answer + "</div>";
+      }
+
+      displayQuestionCard();
+
+      card.addEventListener("click", function () {
+        if (card.querySelector(".question")) {
+          displayAnswerCard();
+        } else {
+          displayQuestionCard();
+        }
+      });
+    </script>
+  </body>
+</html>
